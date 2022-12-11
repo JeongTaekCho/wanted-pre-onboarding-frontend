@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Wrapper } from "../../styles/commonStyle";
 import LoginBtn from "../base/buttons/login-button";
 import LoginInput from "../base/inputs/login-input";
 
@@ -32,6 +33,15 @@ const Title = styled.h2`
   margin-bottom: 4rem;
 `;
 
+const GoJoin = styled.p`
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #111;
+  margin-top: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 const LayoutJoin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,6 +59,10 @@ const LayoutJoin = () => {
     } else if (name === "passwordConfirm") {
       setPasswordConfirm(value);
     }
+  };
+
+  const onClickToLogin = () => {
+    navigation("/");
   };
 
   const onClickJoin = async () => {
@@ -69,39 +83,42 @@ const LayoutJoin = () => {
   };
 
   return (
-    <JoinContainer>
-      <Title>회원가입</Title>
-      <JoinBox>
-        <InputBox>
-          <JoinLabel>이메일</JoinLabel>
-          <LoginInput
-            type="text"
-            placeholder="이메일을 입력해 주세요."
-            onChange={onChangeInput}
-            name="email"
-          />
-        </InputBox>
-        <InputBox>
-          <JoinLabel>비밀번호</JoinLabel>
-          <LoginInput
-            type="password"
-            placeholder="비밀번호를 입력해 주세요."
-            onChange={onChangeInput}
-            name="password"
-          />
-        </InputBox>
-        <InputBox>
-          <JoinLabel>비밀번호 확인</JoinLabel>
-          <LoginInput
-            type="password"
-            placeholder="비밀번호를 다시 입력해 주세요."
-            onChange={onChangeInput}
-            name="passwordConfirm"
-          />
-        </InputBox>
-        <LoginBtn value="회원가입" onClick={onClickJoin} />
-      </JoinBox>
-    </JoinContainer>
+    <Wrapper>
+      <JoinContainer>
+        <Title>회원가입</Title>
+        <JoinBox>
+          <InputBox>
+            <JoinLabel>이메일</JoinLabel>
+            <LoginInput
+              type="text"
+              placeholder="이메일을 입력해 주세요."
+              onChange={onChangeInput}
+              name="email"
+            />
+          </InputBox>
+          <InputBox>
+            <JoinLabel>비밀번호</JoinLabel>
+            <LoginInput
+              type="password"
+              placeholder="비밀번호를 입력해 주세요."
+              onChange={onChangeInput}
+              name="password"
+            />
+          </InputBox>
+          <InputBox>
+            <JoinLabel>비밀번호 확인</JoinLabel>
+            <LoginInput
+              type="password"
+              placeholder="비밀번호를 다시 입력해 주세요."
+              onChange={onChangeInput}
+              name="passwordConfirm"
+            />
+          </InputBox>
+          <LoginBtn value="회원가입" onClick={onClickJoin} />
+        </JoinBox>
+        <GoJoin onClick={onClickToLogin}>로그인 하러가기</GoJoin>
+      </JoinContainer>
+    </Wrapper>
   );
 };
 
