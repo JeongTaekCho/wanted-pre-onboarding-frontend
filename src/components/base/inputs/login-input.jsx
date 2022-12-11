@@ -10,10 +10,18 @@ const Input = styled.input`
   font-size: 1.6rem;
   font-weight: 400;
   color: rgb(153, 153, 153);
+  outline: none;
 `;
 
 const LoginInput = (props) => {
-  return <Input type={props.type} placeholder={props.placeholder}></Input>;
+  return (
+    <Input
+      type={props.type}
+      placeholder={props.placeholder}
+      onChange={props.onChange}
+      name={props.name}
+    ></Input>
+  );
 };
 
 export default LoginInput;

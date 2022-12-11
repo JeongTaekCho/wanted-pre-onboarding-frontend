@@ -1,5 +1,11 @@
+import LayoutJoin from "../../components/layout/layout.join";
+
 const JoinPage = () => {
-  return <>회원가입 페이지</>;
+  return (
+    <>
+      <LayoutJoin />
+    </>
+  );
 };
 
 export default JoinPage;
