@@ -86,7 +86,7 @@ const TodoLi = ({ el, setRefetch }) => {
     await axios.put(
       `https://pre-onboarding-selection-task.shop/todos/${dataId}`,
       {
-        todo: updateTodo,
+        todo: updateTodo || el.todo,
         isCompleted: true,
       },
       {

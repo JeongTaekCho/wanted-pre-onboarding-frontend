@@ -67,16 +67,24 @@ const LayoutJoin = () => {
 
   const onClickJoin = async () => {
     try {
-      await axios.post(
-        "https://pre-onboarding-selection-task.shop/auth/signup",
-        {
-          email,
-          password,
-        }
-      );
+      if (!email.includes("@")) {
+        alert("이메일 형식으로 다시 입력해 주세요.");
+      } else if (password < 8) {
+        alert("비밀번호를 8자 이상 입력해주세요.");
+      } else if (password !== passwordConfirm) {
+        alert("비밀번호가 서로 다릅니다.");
+      } else {
+        await axios.post(
+          "https://pre-onboarding-selection-task.shop/auth/signup",
+          {
+            email,
+            password,
+          }
+        );
 
-      alert("회원가입이 완료되었습니다.");
-      navigation("/");
+        alert("회원가입이 완료되었습니다.");
+        navigation("/");
+      }
     } catch (error) {
       alert("회원가입 실패");
     }

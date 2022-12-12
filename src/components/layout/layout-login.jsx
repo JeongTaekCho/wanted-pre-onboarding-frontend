@@ -71,6 +71,12 @@ const LayoutLogin = () => {
 
   const onClickLogin = async () => {
     try {
+      //   if (!email.includes("@")) {
+      //     alert("이메일 형식으로 다시 입력해 주세요.");
+      //   }
+      //   if (password < 8) {
+      //     alert("비밀번호를 8자 이상 입력해주세요.");
+      //   }
       const result = await axios.post(
         "https://pre-onboarding-selection-task.shop/auth/signin",
         {
