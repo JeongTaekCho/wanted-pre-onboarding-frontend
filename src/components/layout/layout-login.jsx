@@ -50,8 +50,6 @@ const LayoutLogin = () => {
   const navigation = useNavigate();
 
   useEffect(() => {
-    console.log(!localStorage.getItem("accessToken"));
-
     if (localStorage.getItem("accessToken")) {
       navigation("/todo");
     }

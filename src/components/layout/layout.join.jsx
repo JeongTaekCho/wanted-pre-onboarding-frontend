@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Wrapper } from "../../styles/commonStyle";
 import LoginBtn from "../base/buttons/login-button";
@@ -49,6 +49,12 @@ const LayoutJoin = () => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const navigation = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      navigation("/todo");
+    }
+  }, [navigation]);
 
   const onChangeInput = (event) => {
     const { name, value } = event.target;
