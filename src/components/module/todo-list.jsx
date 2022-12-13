@@ -123,7 +123,10 @@ const TodoLi = ({ el, setRefetch }) => {
           </TodoList>
           {el.isCompleted ? (
             <CompleteImg>
-              <img src="https://img.icons8.com/color/512/checked--v4.png" />
+              <img
+                src="https://img.icons8.com/color/512/checked--v4.png"
+                alt="아이콘"
+              />
             </CompleteImg>
           ) : (
             <BtnBox>

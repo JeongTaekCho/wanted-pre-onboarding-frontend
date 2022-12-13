@@ -82,7 +82,7 @@ const LayoutTodoList = () => {
     if (!localStorage.getItem("accessToken")) {
       navigation("/");
     }
-  }, []);
+  }, [navigation]);
 
   useEffect(() => {
     const result = localStorage.getItem("accessToken");

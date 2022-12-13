@@ -45,7 +45,6 @@ const GoJoin = styled.p`
 const LayoutLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const navigation = useNavigate();
 
@@ -53,7 +52,7 @@ const LayoutLogin = () => {
     if (localStorage.getItem("accessToken")) {
       navigation("/todo");
     }
-  }, []);
+  }, [navigation]);
 
   const onChangeInput = (event) => {
     const { name, value } = event.target;
