@@ -9,10 +9,17 @@ const Button = styled.button`
   font-weight: 600;
   color: #fff;
   cursor: pointer;
+  :disabled {
+    background-color: gray;
+  }
 `;
 
 const LoginBtn = (props) => {
-  return <Button onClick={props.onClick}>{props.value}</Button>;
+  return (
+    <Button onClick={props.onClick} disabled={props.disabled}>
+      {props.value}
+    </Button>
+  );
 };
 
 export default LoginBtn;

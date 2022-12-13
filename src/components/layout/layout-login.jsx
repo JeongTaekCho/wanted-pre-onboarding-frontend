@@ -45,10 +45,13 @@ const GoJoin = styled.p`
 const LayoutLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const navigation = useNavigate();
 
   useEffect(() => {
+    console.log(!localStorage.getItem("accessToken"));
+
     if (localStorage.getItem("accessToken")) {
       navigation("/todo");
     }
@@ -59,8 +62,18 @@ const LayoutLogin = () => {
 
     if (name === "email") {
       setEmail(value);
+      if (event.target.value.includes("@") && password.length > 7) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
     } else if (name === "password") {
       setPassword(value);
+      if (email.includes("@") && event.target.value.length > 7) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
     }
   };
 
@@ -70,12 +83,12 @@ const LayoutLogin = () => {
 
   const onClickLogin = async () => {
     try {
-      //   if (!email.includes("@")) {
-      //     alert("이메일 형식으로 다시 입력해 주세요.");
-      //   }
-      //   if (password < 8) {
-      //     alert("비밀번호를 8자 이상 입력해주세요.");
-      //   }
+      if (!email.includes("@")) {
+        alert("이메일 형식으로 다시 입력해 주세요.");
+      }
+      if (password < 8) {
+        alert("비밀번호를 8자 이상 입력해주세요.");
+      }
       const result = await axios.post(
         "https://pre-onboarding-selection-task.shop/auth/signin",
         {
@@ -115,7 +128,11 @@ const LayoutLogin = () => {
               onChange={onChangeInput}
             />
           </InputBox>
-          <LoginBtn value="로그인" onClick={onClickLogin} />
+          <LoginBtn
+            value="로그인"
+            onClick={onClickLogin}
+            disabled={isDisabled}
+          />
         </LoginBox>
         <GoJoin onClick={onClickToJoin}>회원가입 하러가기</GoJoin>
       </LoginContainer>

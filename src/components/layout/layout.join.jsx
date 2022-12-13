@@ -46,6 +46,7 @@ const LayoutJoin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const navigation = useNavigate();
 
@@ -54,10 +55,37 @@ const LayoutJoin = () => {
 
     if (name === "email") {
       setEmail(value);
+      if (
+        event.target.value.includes("@") &&
+        password.length > 7 &&
+        passwordConfirm.length > 7
+      ) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
     } else if (name === "password") {
       setPassword(value);
+      if (
+        email.includes("@") &&
+        event.target.value.length > 7 &&
+        passwordConfirm.length > 7
+      ) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
     } else if (name === "passwordConfirm") {
       setPasswordConfirm(value);
+      if (
+        email.includes("@") &&
+        password.length > 7 &&
+        event.target.value.length > 7
+      ) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
     }
   };
 
@@ -122,7 +150,11 @@ const LayoutJoin = () => {
               name="passwordConfirm"
             />
           </InputBox>
-          <LoginBtn value="회원가입" onClick={onClickJoin} />
+          <LoginBtn
+            value="회원가입"
+            onClick={onClickJoin}
+            disabled={isDisabled}
+          />
         </JoinBox>
         <GoJoin onClick={onClickToLogin}>로그인 하러가기</GoJoin>
       </JoinContainer>
